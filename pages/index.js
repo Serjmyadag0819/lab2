@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 export default function Home() {
   const [name, setName] = useState("");
+  const [view, setView] = useState("grid");
 
   const users = [
     { name: "Temujin", surname: "Сойл-Эрдэнэ", items: ["keyboard", "mouse"], img: "/images/ad.jpg", title: "developer" },
@@ -38,16 +39,15 @@ export default function Home() {
         onChange={(e) => setName(e.target.value)}
       />
 
-      <div style={{ padding: "20px", textAlign: "center", color: "white", marginTop: "60px" }}>
-      </div>
+      <div style={{ padding: "20px", textAlign: "center", color: "white", marginTop: "60px" }}></div>
 
       <div
         style={{
-          display: "grid",
+          display: view === "grid" ? "grid" : "block",
           gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
           gap: "20px",
           padding: "20px",
-          backgroundColor: "black",
+          backgroundColor: "white",
         }}
       >
         {filteredUsers.map((user, index) => (
@@ -58,32 +58,55 @@ export default function Home() {
               borderRadius: "8px",
               padding: "15px",
               textAlign: "center",
-              backgroundColor: "black",
+              backgroundColor: "gray",
               color: "white",
               boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+              display: "flex",
+              flexDirection: view === "grid" ? "column" : "row",
+              alignItems: "center",
             }}
           >
             <img
               src={user.img}
               alt={user.name}
               style={{
-                width: "100%",
-                height: "150px",
+                width: view === "grid" ? "100%" : "150px", 
+                height: view === "grid" ? "150px" : "auto",
                 objectFit: "cover",
                 borderRadius: "8px",
-                marginBottom: "10px",
+                marginBottom: view === "grid" ? "10px" : "0",
+                marginRight: view === "list" ? "15px" : "0",
               }}
             />
-            <h3 style={{ margin: "10px 0", fontSize: "1.2rem" }}>{user.name}</h3>
-            <p style={{ margin: "5px 0" }}>{user.surname}</p>
-            <p style={{ margin: "5px 0" }}>{user.title}</p>
-            <p style={{ margin: "5px 0" }}>
-              <strong>Items:</strong> {user.items.join(", ")}
-            </p>
+            <div>
+              <h3 style={{ margin: "10px 0", fontSize: "1.2rem" }}>{user.name}</h3>
+              <p style={{ margin: "5px 0" }}>{user.surname}</p>
+              <p style={{ margin: "5px 0" }}>{user.title}</p>
+              <p style={{ margin: "5px 0" }}>
+                <strong>Items:</strong> {user.items.join(", ")}
+              </p>
+            </div>
           </div>
         ))}
       </div>
+
+      <button
+  onClick={() => setView(view === "grid" ? "list" : "grid")}
+  style={{
+    position: "fixed",
+    top: "20px", 
+    right: "20px",
+    padding: "10px 20px",
+    backgroundColor: "#808080",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    fontSize: "1rem",
+    cursor: "pointer",
+  }}
+>
+        {view === "grid" ? "Switch" : "Back"}
+      </button>
     </div>
   );
 }
-
