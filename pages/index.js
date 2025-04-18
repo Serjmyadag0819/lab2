@@ -1,101 +1,46 @@
 import React from "react";
-import { useRouter } from "next/router";
 
-export default function Home() {
-  const router = useRouter();
-
-  const navigateToPage = (url) => {
-    router.push(url);
-  };
-
+const Toki = () => {
   return (
-    <div style={styles.container}>
-      <p style={styles.title}>Project</p>
+    <div className="min-h-screen bg-gradient-to-r from-yellow-50 to-yellow-100 flex flex-col">
+      <header className="flex justify-center items-center p-3 bg-white">
+        <div className="flex justify-between items-center w-full max-w-screen-lg px-1">
+          <img src="images/toki.PNG" alt="Toki Logo" className="h-16 mr-2" />
+          <nav className="flex space-x-6 text-gray-700 font-medium ml-6">
+            <a>Үйлчилгээ</a>
+            <a>Давуу тал</a>
+            <a>Мэдээ</a>
+            <a>Хамтран ажиллах</a>
+          </nav>
+        </div>
+      </header>
 
-      <img
-        src="/images/nest.ico"
-        alt="Image"
-        style={styles.image}
-      />
+      <main className="flex flex-col items-center justify-center flex-grow p-6 text-center">
+        <h1 className="text-3xl md:text-3xl font-extralight text-gray-700 mb-4">
+          ХЭРЭГЦЭЭТ ҮЙЛЧИЛГЭЭ НЭГ ДОРООС...
+        </h1>
 
-      <div style={styles.buttonContainer}>
-        <button
-          onClick={() => navigateToPage("/lab1")}
-          style={styles.button("#A8DADC")}
-        >
-          hicheel 1
-        </button>
+        <div className="flex gap-6 mb-8 flex-wrap justify-center">
+          <img src="images/hha.PNG" alt="Main" className="max-w-full h-auto" />
+        </div>
 
-        <button
-          onClick={() => navigateToPage("/lab3")}
-          style={styles.button("#FFE156")}
-        >
-          hicheel 2
-        </button>
-
-        <button
-          onClick={() => navigateToPage("/lab4")}
-          style={styles.button("#F9C74F")}
-        >
-          hicheel 3
-        </button>
-
-        <button
-          onClick={() => navigateToPage("/lab2")}
-          style={styles.button("#90BE6D")}
-        >
-          hicheel 4
-        </button>
-      </div>
+        <div className="flex gap-4 justify-center items-center">
+          <img
+            src="images/apple.png"
+            alt="Download"
+            className="h-10"
+          />
+          <img
+            src="images/google.webp"
+            alt="Download"
+            className="h-16"
+          />
+        </div>
+      </main>
     </div>
   );
-}
-
-const styles = {
-  container: {
-    textAlign: "center",
-    marginTop: "50px",
-    position: "relative",
-    fontFamily: "Arial, sans-serif",
-    backgroundColor: "#F1F3F5",
-    minHeight: "100vh",
-    padding: "20px",
-  },
-  title: {
-    fontSize: "36px",
-    fontWeight: "bold",
-    color: "#333",
-    marginBottom: "30px",
-    letterSpacing: "2px",
-  },
-  image: {
-    position: "absolute",
-    top: "20px",
-    right: "20px",
-    width: "80px",
-    height: "auto",
-    borderRadius: "50%",
-    border: "2px solid #ddd",
-    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
-  },
-  buttonContainer: {
-    display: "flex",
-    justifyContent: "center",
-    flexWrap: "wrap",
-    marginTop: "30px",
-  },
-  button: (bgColor) => ({
-    padding: "12px 30px",
-    fontSize: "16px",
-    margin: "12px",
-    backgroundColor: bgColor,
-    color: "#333",
-    border: "none",
-    borderRadius: "30px",
-    cursor: "pointer",
-    transition: "transform 0.3s ease, box-shadow 0.3s ease",
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-    fontWeight: "bold",
-    textTransform: "uppercase",
-  }),
 };
+
+export default Toki;
+
+
