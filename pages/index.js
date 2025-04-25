@@ -1,13 +1,29 @@
-import React from "react";
+import { useEffect } from "react";
 
-const Toki = () => {
+export default function Home() {
+
+  useEffect(() => {
+    document.querySelectorAll("[data-scroll-to]").forEach((item) => {
+      item.addEventListener("click", () => {
+        const targetId = item.getAttribute("data-scroll-to");
+        const targetElement = document.querySelector(targetId);
+
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: "smooth" });
+        } else {
+          console.error(`Element with ID ${targetId} not found`);
+        }
+      });
+    });
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-r from-yellow-50 to-yellow-100 flex flex-col">
       <header className="flex justify-center items-center p-3 bg-white">
         <div className="flex justify-between items-center w-full max-w-screen-lg px-1">
           <img src="images/toki.PNG" alt="Toki Logo" className="h-16 mr-2" />
           <nav className="flex space-x-6 text-gray-700 font-medium ml-6">
-            <a>Үйлчилгээ</a>
+            <a data-scroll-to="#c">Үйлчилгээ</a>
             <a>Давуу тал</a>
             <a>Мэдээ</a>
             <a>Хамтран ажиллах</a>
@@ -24,15 +40,15 @@ const Toki = () => {
           <img src="images/hha.PNG" alt="Main" className="max-w-full h-auto" />
         </div>
 
-        <div className="flex gap-4 justify-center items-center">
+        <div className="flex gap-4 justify-center items-center" id="section1">
           <img
             src="images/apple.png"
-            alt="Download"
+            alt="Download on App Store"
             className="h-10"
           />
           <img
             src="images/google.webp"
-            alt="Download"
+            alt="Get it on Google Play"
             className="h-16"
           />
         </div>
@@ -41,6 +57,6 @@ const Toki = () => {
   );
 };
 
-export default Toki;
+
 
 
